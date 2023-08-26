@@ -3,10 +3,10 @@
 </script>
 
 <template>
-    <section class="py-10">
+    <section class="pt-10 pb-20">
         <!-- heading -->
-        <div class="py-8 border-b">
-            <h2 class="font-semibold text-3xl uppercase">Get in Touch</h2>
+        <div class="pb-8 border-b">
+            <h2 class="font-semibold text-2xl uppercase">Get in Touch</h2>
         </div>
 
         <!-- contact -->
@@ -16,9 +16,9 @@
                 <p class="mt-1 text-gray-500">You can write us an email and we'll get back to you in short time.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-5 justify-center items-center gap-10">
                 <!-- form -->
-                <div class="w-full col-span-3">
+                <div class="w-full md:col-span-3">
                     <form>
                         <!-- name -->
                         <div class="grid md:grid-cols-2 md:gap-6">
@@ -56,7 +56,7 @@
                 </div>
 
                 <!-- info -->
-                <div class="p-10 col-span-2 space-y-8 w-full bg-base-200">
+                <div class="p-10 md:col-span-2 space-y-8 w-full bg-base-200">
                     <div class="">
                         <h3 class="font-semibold uppercase">Call Us</h3>
                         <p class="text-gray-500">You can call us if you have question or suggestion.</p>

@@ -5,8 +5,8 @@
 <template>
     <section class="py-10">
         <!-- heading -->
-        <div class="py-8">
-            <h2 class="font-semibold text-3xl uppercase">FAQ</h2>
+        <div class="pb-8">
+            <h2 class="font-semibold text-2xl uppercase">FAQ</h2>
         </div>
 
         <!-- answer -->
