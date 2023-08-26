@@ -2,6 +2,7 @@
 import NavbarSection from '@/components/NavbarSection.vue';
 import HeroSection from '@/components/home/HeroSection.vue';
 import AnswerSection from '@/components/home/AnswerSection.vue';
+import ContactSection from '@/components/home/ContactSection.vue';
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import AnswerSection from '@/components/home/AnswerSection.vue';
             <div class="px-4 xl:px-40">
                 <HeroSection />
                 <AnswerSection />
+                <ContactSection />
             </div>
         </div>
     </main>
