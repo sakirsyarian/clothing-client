@@ -4,7 +4,7 @@ import ListSection from '@/components/catalog/ListSection.vue';
 </script>
 
 <template>
-    <div class="py-10">
+    <section class="py-10">
         <div class="pb-3 flex flex-wrap items-center justify-between">
             <h2 class="pr-16 font-semibold text-xl uppercase">Catalog</h2>
             <div class="text-sm breadcrumbs">
@@ -18,5 +18,5 @@ import ListSection from '@/components/catalog/ListSection.vue';
             <SortSection />
             <ListSection />
         </div>
-    </div>
+    </section>
 </template>
