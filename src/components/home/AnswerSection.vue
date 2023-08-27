@@ -14,37 +14,36 @@
             <div class="collapse collapse-plus bg-base-100 rounded-none border">
                 <input type="radio" name="my-accordion-3" checked="checked" />
                 <div class="collapse-title text-lg font-medium">
-                    Bagaimana cara berbelanja di Elgoritme?
+                    How to shop at Elgoritme?
                 </div>
                 <div class="collapse-content">
                     <p class="text-gray-500">
-                        Untuk berbelanja di website fashion store, Anda perlu membuat akun terlebih dahulu dengan mengisi
-                        data diri dan alamat pengiriman. Kemudian, Anda bisa memilih produk yang Anda inginkan dari katalog
-                        yang tersedia. Setelah itu, Anda bisa menambahkan produk ke keranjang belanja dan melanjutkan ke
-                        proses pembayaran. Anda bisa memilih metode pembayaran yang sesuai dengan preferensi Anda, seperti
-                        transfer bank, kartu kredit, atau e-wallet. Setelah pembayaran berhasil, Anda akan mendapatkan
-                        konfirmasi dan nomor resi pengiriman melalui email.
+                        To shop on the fashion store website, you need to create an account first by filling in your
+                        personal data and shipping address. Then, you can choose the products you want from the catalog
+                        catalog that is available. After that, you can add the products to your shopping cart and proceed to
+                        the checkout process. payment process. You can choose a payment method that suits your preference,
+                        such as bank transfer, credit card, or e-wallet. After successful payment, you will get
+                        confirmation and shipping receipt number via email.
                     </p>
                 </div>
             </div>
             <div class="collapse collapse-plus bg-base-100 rounded-none border">
                 <input type="radio" name="my-accordion-3" />
                 <div class="collapse-title text-lg font-medium">
-                    Apa saja keuntungan berbelanja di Elgoritme?
+                    What are the benefits of shopping at Elgoritme?
                 </div>
                 <div class="collapse-content">
                     <p class="text-gray-500">Berbelanja di website fashion store memiliki banyak keuntungan, antara lain:
                     </p>
                     <ul class="mt-2 text-gray-500">
-                        <li>- Anda bisa mendapatkan produk fashion terbaru dan berkualitas dari berbagai merek ternama</li>
-                        <li>- Anda bisa menikmati diskon, promo, dan voucher menarik yang ditawarkan oleh website fashion
+                        <li>- You can get the latest and quality fashion products from various top brands.</li>
+                        <li>- You can enjoy attractive discounts, promos, and vouchers offered by the fashion website
                             store</li>
-                        <li>- Anda bisa menghemat waktu dan biaya transportasi karena tidak perlu keluar rumah untuk
-                            berbelanja</li>
-                        <li>- Anda bisa mendapatkan layanan pengiriman cepat dan aman ke seluruh Indonesia</li>
-                        <li>- Anda bisa mendapatkan garansi dan layanan retur jika produk yang Anda terima tidak sesuai
-                            dengan
-                            deskripsi atau cacat
+                        <li>- You can save time and transportation costs because you don't have to leave your house to shop.
+                            shopping</li>
+                        <li>- You can get fast and secure delivery services throughout Indonesia.</li>
+                        <li>- You can get a warranty and return service if the product you receive is not in accordance with
+                            with description or defective
                         </li>
                     </ul>
                 </div>
@@ -52,17 +51,16 @@
             <div class="collapse collapse-plus bg-base-100 rounded-none border">
                 <input type="radio" name="my-accordion-3" />
                 <div class="collapse-title text-lg font-medium">
-                    Bagaimana cara menghubungi layanan pelanggan Elgoritme?
+                    How to contact Elgoritme customer service?
                 </div>
                 <div class="collapse-content">
-                    <p class="text-gray-500">Jika Anda memiliki pertanyaan, keluhan, atau saran mengenai website fashion
-                        store, Anda bisa
-                        menghubungi layanan pelanggan kami melalui beberapa cara berikut:</p>
+                    <p class="text-gray-500">If you have any questions, complaints, or suggestions regarding the fashion
+                        website store website, you can contact our customer service in the following ways:</p>
                     <ul class="mt-2 text-gray-500">
-                        <li>- Mengirim email ke elgoritme@mail.com kami</li>
-                        <li>- Mengisi formulir contact yang tersedia di website kami</li>
-                        <li>- Menghubungi nomor telepon 021-123456 kami</li>
-                        <li>- Mengirim pesan melalui @elgoritme kami</li>
+                        <li>- Send an email to our elgoritme@mail.com</li>
+                        <li>- Fill out the contact form available on our website</li>
+                        <li>- Contact our telephone number 021-123456</li>
+                        <li>- Send a message through our @elgoritme</li>
                     </ul>
                 </div>
             </div>
