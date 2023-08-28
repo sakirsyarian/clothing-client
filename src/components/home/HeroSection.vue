@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 
 import { get } from '@/lib/axios';
+import rupiah from '@/utils/rupiah';
 import { useProductStore } from '@/stores/product';
 
 let productTshirt = ref([])
@@ -10,12 +11,7 @@ const productStore = useProductStore();
 
 onMounted(async () => {
     const { data: productList } = await get(productStore.url)
-    productList.data.map((item) => {
-        item.price = new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR'
-        }).format(item.price)
-    })
+    rupiah(productList.data)
 
     productStore.products = productList.data
     productTshirt.value = productStore.products.slice(0, 3)
@@ -53,7 +49,7 @@ onMounted(async () => {
                 <div class="py-5 flex flex-col md:flex-row gap-5 font-semibold">
                     <div v-for="tshirt in productTshirt" :key="tshirt.id" class="p-5 space-y-5 uppercase bg-base-200">
                         <p class="text-right">{{ tshirt.name }}</p>
-                        <img :src="'/shirt/' + tshirt.image" class="mx-auto" alt="javascript">
+                        <img :src="'/products/' + tshirt.image" class="mx-auto" alt="javascript">
                         <div class="flex flex-row md:flex-col lg:flex-row justify-between">
                             <p>{{ tshirt.price }}</p>
                             <a href="#" class="underline">Buy</a>
@@ -88,7 +84,7 @@ onMounted(async () => {
                 <div class="py-5 flex flex-col md:flex-row gap-5 font-semibold">
                     <div v-for="premium in productPremium" :key="premium.id" class="p-5 space-y-5 uppercase bg-base-200">
                         <p class="text-right">{{ premium.name }}</p>
-                        <img :src="'/shirt/' + premium.image" class="mx-auto" alt="javascript">
+                        <img :src="'/products/' + premium.image" class="mx-auto" alt="javascript">
                         <div class="flex flex-row md:flex-col lg:flex-row justify-between">
                             <p>{{ premium.price }}</p>
                             <a href="#" class="underline">Buy</a>

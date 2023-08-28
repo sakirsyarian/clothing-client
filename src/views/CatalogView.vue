@@ -9,7 +9,7 @@ import ListSection from '@/components/catalog/ListSection.vue';
             <h2 class="pr-16 font-semibold text-2xl uppercase">Catalog</h2>
             <div class="text-sm breadcrumbs">
                 <ul class="text-gray-500">
-                    <li><a>Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li>Catalog</li>
                 </ul>
             </div>
