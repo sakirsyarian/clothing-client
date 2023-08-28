@@ -22,9 +22,9 @@ import FooterSection from '@/components/FooterSection.vue';
         </div>
     </main>
 
-    <footer class="bg-black">
-        <div class="mx-auto container">
-            <div class="px-4 xl:px-40">
+    <footer class="mx-auto container">
+        <div class="px-4 xl:px-40">
+            <div class="bg-black">
                 <FooterSection />
             </div>
         </div>

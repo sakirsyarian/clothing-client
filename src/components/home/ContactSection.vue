@@ -56,7 +56,7 @@
                 </div>
 
                 <!-- info -->
-                <div class="p-10 md:col-span-2 space-y-8 w-full bg-base-200">
+                <div class="p-5 md:p-10 md:col-span-2 space-y-8 w-full bg-base-200">
                     <div class="">
                         <h3 class="font-semibold uppercase">Call Us</h3>
                         <p class="text-gray-500">You can call us if you have question or suggestion.</p>

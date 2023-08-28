@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <section class="py-16">
+    <section class="py-16 px-5 md:px-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between gap-10">
             <!-- product -->
             <div class="space-y-4">

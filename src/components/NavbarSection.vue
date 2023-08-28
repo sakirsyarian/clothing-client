@@ -72,9 +72,9 @@ import { RouterLink } from 'vue-router'
                             <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
                     </button>
-                    <div class="mt-3 z-[1] w-80 dropdown-content transition-all delay-100">
+                    <!-- <div class="mt-3 z-[1] w-80 dropdown-content transition-all delay-100">
                         <div class="relative w-full">
-                            <div className="p-8 w-96 h-screen absolute top-[-5px] right-[-5.1rem] bg-base-100">
+                            <div className="p-8 w-96 h-screen absolute top-[-5px] right-[-5.1rem] bg-base-200">
                                 <div class="grid gap-5 font-semibold">
                                     <RouterLink class="" to="/about">About</RouterLink>
                                     <RouterLink class="" to="/catalog">Catalog</RouterLink>
@@ -83,7 +83,7 @@ import { RouterLink } from 'vue-router'
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
