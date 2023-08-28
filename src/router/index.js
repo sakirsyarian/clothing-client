@@ -4,6 +4,7 @@ import HomeView from '@/views/HomeView.vue'
 import CatalogView from '@/views/CatalogView.vue'
 import ProductView from '@/views/ProductView.vue'
 import ShoppingView from '@/views/ShoppingView.vue'
+import CheckoutView from '@/views/CheckoutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +32,11 @@ const router = createRouter({
           path: 'about',
           name: 'about',
           component: ShoppingView
+        },
+        {
+          path: 'premium',
+          name: 'premium',
+          component: CheckoutView
         }
       ]
     }

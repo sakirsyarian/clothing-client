@@ -5,7 +5,7 @@ const quantity = ref(1);
 </script>
 
 <template>
-    <section class="py-5">
+    <section class="py-5 border-b">
         <!-- table -->
         <div class="overflow-x-auto">
             <table class="table">
@@ -32,7 +32,9 @@ const quantity = ref(1);
                                 <button @click="quantity++" class="px-4 py-1 border">+</button>
                             </div>
                         </td>
-                        <td class="font-semibold">Rp 56.000</td>
+                        <td>
+                            <p class="font-semibold">Rp 56.000</p>
+                        </td>
                         <td>
                             <a href="#">
                                 <svg class="w-6 h-6" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +58,9 @@ const quantity = ref(1);
                                 <button @click="quantity++" class="px-4 py-1 border">+</button>
                             </div>
                         </td>
-                        <td class="font-semibold">Rp 55.000</td>
+                        <td>
+                            <p class="font-semibold">Rp 55.000</p>
+                        </td>
                         <td>
                             <a href="#">
                                 <svg class="w-6 h-6" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
