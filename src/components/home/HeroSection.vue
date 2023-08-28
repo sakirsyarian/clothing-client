@@ -11,7 +11,7 @@ const productStore = useProductStore();
 
 onMounted(async () => {
     const { data: productList } = await get(productStore.url)
-    rupiah(productList.data)
+    productList.data.map(product => product.price = rupiah(product.price))
 
     productStore.products = productList.data
     productTshirt.value = productStore.products.slice(0, 3)
@@ -48,7 +48,7 @@ onMounted(async () => {
                 <!-- shirt -->
                 <div class="py-5 flex flex-col md:flex-row gap-5 font-semibold">
                     <div v-for="tshirt in productTshirt" :key="tshirt.id" class="p-5 space-y-5 uppercase bg-base-200">
-                        <p class="text-right">{{ tshirt.name }}</p>
+                        <a :href="'/product/' + tshirt.id">{{ tshirt.name }}</a>
                         <img :src="'/products/' + tshirt.image" class="mx-auto" alt="javascript">
                         <div class="flex flex-row md:flex-col lg:flex-row justify-between">
                             <p>{{ tshirt.price }}</p>
@@ -83,7 +83,7 @@ onMounted(async () => {
                 <!-- shirt -->
                 <div class="py-5 flex flex-col md:flex-row gap-5 font-semibold">
                     <div v-for="premium in productPremium" :key="premium.id" class="p-5 space-y-5 uppercase bg-base-200">
-                        <p class="text-right">{{ premium.name }}</p>
+                        <a :href="'/product/' + premium.id">{{ premium.name }}</a>
                         <img :src="'/products/' + premium.image" class="mx-auto" alt="javascript">
                         <div class="flex flex-row md:flex-col lg:flex-row justify-between">
                             <p>{{ premium.price }}</p>

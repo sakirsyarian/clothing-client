@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 
 export const useProductStore = defineStore('product', () => {
   const products = ref([])
-  const url = 'http://localhost:3000/products'
+  const url = 'http://localhost:3000/products/'
 
   return { products, url }
 })

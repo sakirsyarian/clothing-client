@@ -9,7 +9,7 @@ const productStore = useProductStore();
 onMounted(async () => {
     const { data: productList } = await get(productStore.url)
 
-    rupiah(productList.data)
+    productList.data.map(product => product.price = rupiah(product.price))
     productStore.products = productList.data
 });
 </script>
@@ -19,7 +19,7 @@ onMounted(async () => {
         <!-- tshirt -->
         <div class="py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 font-semibold">
             <div v-for="product in productStore.products" :key="product.id" class="p-5 space-y-5 uppercase bg-base-200">
-                <p class="text-right">{{ product.name }}</p>
+                <a :href="'/product/' + product.id">{{ product.name }}</a>
                 <img :src="'/products/' + product.image" class="mx-auto" alt="javascript">
                 <div class="flex flex-row md:flex-col lg:flex-row justify-between">
                     <p>{{ product.price }}</p>
