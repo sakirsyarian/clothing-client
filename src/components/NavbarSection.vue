@@ -1,5 +1,15 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+
+import rupiah from '@/utils/rupiah';
+import { useProductStore } from '@/stores/product';
+
+const productStore = useProductStore();
+function totalPrice() {
+    return productStore.shoppingCart.reduce((total, product) => {
+        return total + (product.quantity * product.price)
+    }, 0)
+}
 </script>
 
 <template>
@@ -47,16 +57,19 @@ import { RouterLink } from 'vue-router'
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
-                            <span class="badge badge-sm indicator-item">0</span>
+                            <span class="badge badge-sm indicator-item">{{ productStore.shoppingCart.length }}</span>
                         </div>
                     </label>
                     <div tabindex="0"
                         class="mt-3 z-[1] card card-compact rounded-none dropdown-content w-52 bg-base-100 shadow">
-                        <div class="card-body">
-                            <span class="font-bold text-lg">8 Items</span>
-                            <span class="text-info">Subtotal: $999</span>
+                        <div class="card-body space-y-1">
+                            <span class="font-bold text-lg">
+                                {{ productStore.shoppingCart.length }}
+                                {{ productStore.shoppingCart.length > 1 ? "Items" : "Item" }}
+                            </span>
+                            <span class="">Total: <span class="normal-case">{{ rupiah(totalPrice()) }}</span></span>
                             <div class="card-actions">
-                                <button class="btn btn-primary btn-block rounded-none">View cart</button>
+                                <button class="btn btn-block rounded-none">View cart</button>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
 
 import { get } from '@/lib/axios';
 import rupiah from '@/utils/rupiah';
@@ -11,7 +12,10 @@ const productStore = useProductStore();
 
 onMounted(async () => {
     const { data: productList } = await get(productStore.url)
-    productList.data.map(product => product.price = rupiah(product.price))
+    productList.data.map(product => {
+        product.quantity = 1
+        product.rupiah = rupiah(product.price)
+    })
 
     productStore.products = productList.data
     productTshirt.value = productStore.products.slice(0, 3)
@@ -48,11 +52,11 @@ onMounted(async () => {
                 <!-- shirt -->
                 <div class="py-5 flex flex-col md:flex-row gap-5 font-semibold">
                     <div v-for="tshirt in productTshirt" :key="tshirt.id" class="p-5 space-y-5 uppercase bg-base-200">
-                        <a :href="'/product/' + tshirt.id">{{ tshirt.name }}</a>
+                        <RouterLink :to="'/product/' + tshirt.id">{{ tshirt.name }}</RouterLink>
                         <img :src="'/products/' + tshirt.image" class="mx-auto" alt="javascript">
                         <div class="flex flex-row md:flex-col lg:flex-row justify-between">
-                            <p>{{ tshirt.price }}</p>
-                            <a href="#" class="underline">Buy</a>
+                            <p>{{ tshirt.rupiah }}</p>
+                            <button @click="productStore.purchase(tshirt.id)" class="underline">Buy</button>
                         </div>
                     </div>
                 </div>
@@ -83,11 +87,11 @@ onMounted(async () => {
                 <!-- shirt -->
                 <div class="py-5 flex flex-col md:flex-row gap-5 font-semibold">
                     <div v-for="premium in productPremium" :key="premium.id" class="p-5 space-y-5 uppercase bg-base-200">
-                        <a :href="'/product/' + premium.id">{{ premium.name }}</a>
+                        <RouterLink :to="'/product/' + premium.id">{{ premium.name }}</RouterLink>
                         <img :src="'/products/' + premium.image" class="mx-auto" alt="javascript">
                         <div class="flex flex-row md:flex-col lg:flex-row justify-between">
-                            <p>{{ premium.price }}</p>
-                            <a href="#" class="underline">Buy</a>
+                            <p>{{ premium.rupiah }}</p>
+                            <button @click="productStore.purchase(premium.id)" class="underline">Buy</button>
                         </div>
                     </div>
                 </div>

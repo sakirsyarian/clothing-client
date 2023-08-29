@@ -2,20 +2,49 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, RouterLink } from 'vue-router'
 
-import { getById } from '@/lib/axios';
+import { get } from '@/lib/axios';
 import rupiah from '@/utils/rupiah';
 import { useProductStore } from '@/stores/product';
 
 const route = useRoute()
-const quantity = ref(1);
+const quantity = ref(0);
 const productDetail = ref({});
 const productStore = useProductStore();
 
-onMounted(async () => {
-    const { data: product } = await getById(productStore.url + route.params.id);
+function quantityOnShoppingCart() {
+    if (productStore.shoppingCart.length) {
+        const found = productStore.shoppingCart.find((el) => el.id === productDetail.value.id)
+        found.quantity = quantity.value
+    }
+}
 
-    product.data.price = rupiah(product.data.price)
-    productDetail.value = product.data
+function quantityPlus() {
+    quantity.value++
+    productDetail.value.quantity = quantity.value
+    quantityOnShoppingCart()
+}
+
+function quantityMinus() {
+    quantity.value--
+    productDetail.value.quantity = quantity.value
+    quantityOnShoppingCart()
+}
+
+function addToChart() {
+    productDetail.value.quantity = quantity.value
+    productStore.purchase(productDetail.value.id)
+}
+
+onMounted(async () => {
+    const { data: product } = await await get(productStore.url)
+    product.data.map(product => {
+        product.quantity = 1
+        product.rupiah = rupiah(product.price)
+    })
+
+    productStore.products = product.data
+    productDetail.value = productStore.products.find((el) => el.id === +route.params.id)
+    quantity.value = productDetail.value.quantity
 });
 </script>
 
@@ -37,8 +66,8 @@ onMounted(async () => {
 
         <!-- heading -->
         <div class="space-y-5">
-            <h2 class="font-semibold text-2xl uppercase">{{ productDetail.name }}</h2>
-            <p class="uppercase text-lg text-gray-600">{{ productDetail.price }}</p>
+            <h2 @click="quantityProduct" class="font-semibold text-2xl uppercase">{{ productDetail.name }}</h2>
+            <p class="uppercase text-lg text-gray-600">{{ productDetail.rupiah }}</p>
         </div>
 
         <!-- info -->
@@ -66,14 +95,14 @@ onMounted(async () => {
         <div>
             <p class="mb-4 font-semibold uppercase">Quantity</p>
             <div class="flex gap-2">
-                <button @click="quantity--" class="px-4 py-1 border" :disabled="quantity === 1">-</button>
+                <button @click="quantityMinus" class="px-4 py-1 border" :disabled="quantity === 1">-</button>
                 <p class="px-4 py-1 text-center border">{{ quantity }}</p>
-                <button @click="quantity++" class="px-4 py-1 border">+</button>
+                <button @click="quantityPlus" class="px-4 py-1 border">+</button>
             </div>
         </div>
 
-        <button className="btn w-full block py-4 rounded-none hover:bg-black bg-black text-base-100">Add to
-            Cart
+        <button @click="addToChart" className="btn w-full block py-4 rounded-none hover:bg-black bg-black text-base-100">
+            Add to Cart
         </button>
     </div>
 </template>

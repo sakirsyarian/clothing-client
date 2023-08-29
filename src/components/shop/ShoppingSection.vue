@@ -76,7 +76,7 @@ const quantity = ref(1);
 
         <!-- button -->
         <div class="mt-5 flex justify-end gap-5">
-            <button className="btn py-4 rounded-none hover:bg-black bg-black text-base-100">
+            <button className="btn py-4 rounded-none text-black">
                 Checkout
             </button>
         </div>
