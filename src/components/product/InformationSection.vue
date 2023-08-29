@@ -1,7 +1,22 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useRoute, RouterLink } from 'vue-router'
 
+import { getById } from '@/lib/axios';
+import rupiah from '@/utils/rupiah';
+import { useProductStore } from '@/stores/product';
+
+const route = useRoute()
 const quantity = ref(1);
+const productDetail = ref({});
+const productStore = useProductStore();
+
+onMounted(async () => {
+    const { data: product } = await getById(productStore.url + route.params.id);
+
+    product.data.price = rupiah(product.data.price)
+    productDetail.value = product.data
+});
 </script>
 
 <template>
@@ -10,39 +25,39 @@ const quantity = ref(1);
         <!-- breadcrumbs -->
         <div class="text-sm breadcrumbs">
             <ul class="text-gray-500">
-                <li><a>Home</a></li>
-                <li><a>Catalog</a></li>
-                <li><a>Tshirt</a></li>
-                <li>JavaScript</li>
+                <li>
+                    <RouterLink to="/">Home</RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/catalog">Product</RouterLink>
+                </li>
+                <li>{{ productDetail.name }}</li>
             </ul>
         </div>
 
         <!-- heading -->
         <div class="space-y-5">
-            <h2 class="font-semibold text-2xl uppercase">JavaScript</h2>
-            <p class="uppercase text-lg text-gray-600">Rp 56.000</p>
+            <h2 class="font-semibold text-2xl uppercase">{{ productDetail.name }}</h2>
+            <p class="uppercase text-lg text-gray-600">{{ productDetail.price }}</p>
         </div>
 
         <!-- info -->
         <div class="space-y-2 text-gray-500">
-            <p>Stock: 10</p>
-            <p>Category: Tshirt</p>
+            <p>Stock: {{ productDetail.stock }}</p>
+            <p>Category: {{ productDetail.Category?.name }}</p>
         </div>
 
         <!-- description -->
         <div class="space-y-2">
             <p>Description :</p>
-            <p class="text-gray-500">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Eu nisl nunc mi ipsum faucibus vitae. Tempor nec feugiat nisl pretium fusce.
-            </p>
+            <p class="text-gray-500">{{ productDetail.description }} </p>
         </div>
     </div>
 
     <!-- image -->
     <div class="w-full">
         <div class="p-10 bg-base-200">
-            <img src="/img/javascript.png" class="mx-auto h-96" alt="javascript">
+            <img :src="'/products/' + productDetail.image" class="mx-auto h-96" alt="javascript">
         </div>
     </div>
 

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import TemplatePage from '@/components/TemplatePage.vue'
 import HomeView from '@/views/HomeView.vue'
 import CatalogView from '@/views/CatalogView.vue'
@@ -26,7 +27,7 @@ const router = createRouter({
         {
           path: 'tshirt',
           name: 'tshirt',
-          component: ProductView
+          component: { template: '<div>Tshirt</div>' }
         },
         {
           path: 'about',
@@ -37,6 +38,11 @@ const router = createRouter({
           path: 'premium',
           name: 'premium',
           component: CheckoutView
+        },
+        {
+          path: 'product/:id',
+          name: 'product detail',
+          component: ProductView
         }
       ]
     }
