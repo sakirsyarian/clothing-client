@@ -45,7 +45,7 @@ onMounted(async () => {
                 <div class="py-5 flex flex-col md:flex-row gap-5 font-semibold">
                     <div v-for="tshirt in productTshirt" :key="tshirt.id" class="p-5 space-y-5 uppercase bg-base-200">
                         <RouterLink :to="'/product/' + tshirt.id">{{ tshirt.name }}</RouterLink>
-                        <img :src="'/products/' + tshirt.image" class="mx-auto" alt="javascript">
+                        <img :src="'/products/' + tshirt.image" class="mx-auto" :alt="tshirt.name">
                         <div class="flex flex-row md:flex-col lg:flex-row justify-between">
                             <p>{{ tshirt.rupiah }}</p>
                             <button @click="productStore.purchase(tshirt.id)" class="underline">Buy</button>

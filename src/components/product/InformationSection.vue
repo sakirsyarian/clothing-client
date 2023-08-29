@@ -79,7 +79,7 @@ onMounted(async () => {
     <!-- image -->
     <div class="w-full">
         <div class="p-10 bg-base-200">
-            <img :src="'/products/' + productDetail.image" class="mx-auto h-96" alt="javascript">
+            <img :src="'/products/' + productDetail.image" class="mx-auto h-96" :alt="productDetail.name">
         </div>
     </div>
 

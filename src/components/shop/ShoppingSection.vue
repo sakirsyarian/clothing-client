@@ -1,7 +1,29 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted } from 'vue';
 
-const quantity = ref(1);
+import rupiah from '@/utils/rupiah'
+import { useProductStore } from '@/stores/product';
+
+function quantityPlus(id) {
+    const found = productStore.shoppingCart.find((el) => el.id === id)
+    found.quantity++
+}
+
+function quantityMinus(id) {
+    const found = productStore.shoppingCart.find((el) => el.id === id)
+    found.quantity--
+}
+
+function deleteProduct(id) {
+    const filter = productStore.shoppingCart.filter(el => el.id !== id)
+    productStore.shoppingCart = filter
+}
+
+const productStore = useProductStore();
+
+onMounted(async () => {
+    await productStore.getProducts()
+});
 </script>
 
 <template>
@@ -17,57 +39,35 @@ const quantity = ref(1);
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                <div v-if="!productStore.shoppingCart.length" class="py-5 uppercase text-gray-400 text-base">
+                    Data not available!
+                </div>
+                <tbody v-if="productStore.shoppingCart.length" class="border-b border-gray-100">
+                    <tr v-for="product in productStore.shoppingCart" :key="product.id">
                         <td class="flex items-center md:gap-5">
                             <div class="p-2 w-28 bg-base-200">
-                                <img src="/img/javascript.png" class="mx-auto" alt="javascript">
+                                <img :src="'/products/' + product.image" class="mx-auto" alt="javascript">
                             </div>
-                            <p class="hidden md:block font-semibold uppercase">JavaScript</p>
+                            <p class="hidden md:block font-semibold uppercase">{{ product.name }}</p>
                         </td>
-                        <td>
+                        <td class="">
                             <div class="flex flex-col md:flex-row gap-1">
-                                <button @click="quantity--" class="px-4 py-1 border" :disabled="quantity === 1">-</button>
-                                <p class="px-4 py-1 text-center border">{{ quantity }}</p>
-                                <button @click="quantity++" class="px-4 py-1 border">+</button>
+                                <button @click="quantityMinus(product.id)" class="px-4 py-1 border"
+                                    :disabled="product.quantity === 1">-</button>
+                                <p class="px-4 py-1 text-center border">{{ product.quantity }}</p>
+                                <button @click="quantityPlus(product.id)" class="px-4 py-1 border">+</button>
                             </div>
                         </td>
-                        <td>
-                            <p class="font-semibold">Rp 56.000</p>
+                        <td class="">
+                            <p class="font-semibold w-full">{{ rupiah(product.price * product.quantity) }}</p>
                         </td>
-                        <td>
-                            <a href="#">
+                        <td class="">
+                            <button @click="deleteProduct(product.id)">
                                 <svg class="w-6 h-6" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                                     <path fill="#ef4444"
                                         d="M216 48h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a8 8 0 0 0 0 16h8v144a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16V64h8a8 8 0 0 0 0-16ZM96 40a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm96 168H64V64h128Zm-80-104v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Zm48 0v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Z" />
                                 </svg>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="flex items-center gap-5">
-                            <div class="p-2 w-28 bg-base-200">
-                                <img src="/img/vue.png" class="mx-auto" alt="vue">
-                            </div>
-                            <p class="hidden md:block font-semibold uppercase">Vue</p>
-                        </td>
-                        <td>
-                            <div class="flex flex-col md:flex-row gap-1">
-                                <button @click="quantity--" class="px-4 py-1 border" :disabled="quantity === 1">-</button>
-                                <p class="px-4 py-1 text-center border">{{ quantity }}</p>
-                                <button @click="quantity++" class="px-4 py-1 border">+</button>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="font-semibold">Rp 55.000</p>
-                        </td>
-                        <td>
-                            <a href="#">
-                                <svg class="w-6 h-6" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill="#ef4444"
-                                        d="M216 48h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a8 8 0 0 0 0 16h8v144a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16V64h8a8 8 0 0 0 0-16ZM96 40a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm96 168H64V64h128Zm-80-104v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Zm48 0v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Z" />
-                                </svg>
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -75,8 +75,8 @@ const quantity = ref(1);
         </div>
 
         <!-- button -->
-        <div class="mt-5 flex justify-end gap-5">
-            <button className="btn py-4 rounded-none text-black">
+        <div v-if="productStore.shoppingCart.length" class="pt-10 pb-5 flex justify-end gap-5">
+            <button className="btn py-4 md:w-60 rounded-none text-black">
                 Checkout
             </button>
         </div>

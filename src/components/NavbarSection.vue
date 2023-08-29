@@ -69,7 +69,7 @@ function totalPrice() {
                             </span>
                             <span class="">Total: <span class="normal-case">{{ rupiah(totalPrice()) }}</span></span>
                             <div class="card-actions">
-                                <button class="btn btn-block rounded-none">View cart</button>
+                                <RouterLink to="/shopping" class="btn btn-block rounded-none">View cart</RouterLink>
                             </div>
                         </div>
                     </div>

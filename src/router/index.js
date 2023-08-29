@@ -40,6 +40,16 @@ const router = createRouter({
           component: CheckoutView
         },
         {
+          path: 'shopping',
+          name: 'shopping-bag',
+          component: ShoppingView
+        },
+        {
+          path: 'checkout',
+          name: 'checkout',
+          component: CheckoutView
+        },
+        {
           path: 'product/:id',
           name: 'product detail',
           component: ProductView
