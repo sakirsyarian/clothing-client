@@ -1,15 +1,10 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 
-import rupiah from '@/utils/rupiah';
+import totalPrice from '@/utils/totalPrice'
 import { useProductStore } from '@/stores/product';
 
 const productStore = useProductStore();
-function totalPrice() {
-    return productStore.shoppingCart.reduce((total, product) => {
-        return total + (product.quantity * product.price)
-    }, 0)
-}
 </script>
 
 <template>
@@ -67,7 +62,11 @@ function totalPrice() {
                                 {{ productStore.shoppingCart.length }}
                                 {{ productStore.shoppingCart.length > 1 ? "Items" : "Item" }}
                             </span>
-                            <span class="">Total: <span class="normal-case">{{ rupiah(totalPrice()) }}</span></span>
+                            <span>Total :
+                                <span class="normal-case">
+                                    {{ totalPrice(productStore.shoppingCart) }}
+                                </span>
+                            </span>
                             <div class="card-actions">
                                 <RouterLink to="/shopping" class="btn btn-block rounded-none">View cart</RouterLink>
                             </div>

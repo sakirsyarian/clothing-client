@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted } from 'vue';
+import { RouterLink } from 'vue-router'
 
 import rupiah from '@/utils/rupiah'
 import { useProductStore } from '@/stores/product';
@@ -46,7 +47,7 @@ onMounted(async () => {
                     <tr v-for="product in productStore.shoppingCart" :key="product.id">
                         <td class="flex items-center md:gap-5">
                             <div class="p-2 w-28 bg-base-200">
-                                <img :src="'/products/' + product.image" class="mx-auto" alt="javascript">
+                                <img :src="'/products/' + product.image" class="mx-auto" :alt="product.name">
                             </div>
                             <p class="hidden md:block font-semibold uppercase">{{ product.name }}</p>
                         </td>
@@ -76,9 +77,9 @@ onMounted(async () => {
 
         <!-- button -->
         <div v-if="productStore.shoppingCart.length" class="pt-10 pb-5 flex justify-end gap-5">
-            <button className="btn py-4 md:w-60 rounded-none text-black">
+            <RouterLink to="/checkout" className="btn py-4 md:w-60 rounded-none text-black">
                 Checkout
-            </button>
+            </RouterLink>
         </div>
     </section>
 </template>

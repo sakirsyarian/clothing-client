@@ -10,8 +10,8 @@ const productDetail = ref({});
 const productStore = useProductStore();
 
 function quantityOnShoppingCart() {
-    if (productStore.shoppingCart.length) {
-        const found = productStore.shoppingCart.find((el) => el.id === productDetail.value.id)
+    const found = productStore.shoppingCart.find((el) => el.id === productDetail.value.id)
+    if (productStore.shoppingCart.length && found) {
         found.quantity = quantity.value
     }
 }
