@@ -27,7 +27,7 @@ const router = createRouter({
         {
           path: 'tshirt',
           name: 'tshirt',
-          component: { template: '<div>Tshirt</div>' }
+          component: CatalogView
         },
         {
           path: 'about',

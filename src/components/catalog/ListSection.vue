@@ -2,19 +2,11 @@
 import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 
-import { get } from '@/lib/axios';
-import rupiah from '@/utils/rupiah';
 import { useProductStore } from '@/stores/product';
 
 const productStore = useProductStore();
 onMounted(async () => {
-    const { data: productList } = await get(productStore.url)
-
-    productList.data.map(product => {
-        product.quantity = 1
-        product.rupiah = rupiah(product.price)
-    })
-    productStore.products = productList.data
+    await productStore.getProducts()
 });
 </script>
 

@@ -1,6 +1,8 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-// import axios from 'axios'
+
+import { get } from '@/lib/axios'
+import rupiah from '@/utils/rupiah'
 
 export const useProductStore = defineStore('product', () => {
   const products = ref([])
@@ -25,5 +27,19 @@ export const useProductStore = defineStore('product', () => {
     return (found.quantity = findProduct.quantity)
   }
 
-  return { url, products, shoppingCart, purchase }
+  async function getProducts() {
+    try {
+      const { data: productList } = await get(url)
+      productList.data.map((product) => {
+        product.quantity = 1
+        product.rupiah = rupiah(product.price)
+      })
+
+      products.value = productList.data
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return { url, products, shoppingCart, purchase, getProducts }
 })

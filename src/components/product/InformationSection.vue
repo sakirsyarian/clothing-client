@@ -2,8 +2,6 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, RouterLink } from 'vue-router'
 
-import { get } from '@/lib/axios';
-import rupiah from '@/utils/rupiah';
 import { useProductStore } from '@/stores/product';
 
 const route = useRoute()
@@ -36,13 +34,8 @@ function addToChart() {
 }
 
 onMounted(async () => {
-    const { data: product } = await await get(productStore.url)
-    product.data.map(product => {
-        product.quantity = 1
-        product.rupiah = rupiah(product.price)
-    })
+    await productStore.getProducts()
 
-    productStore.products = product.data
     productDetail.value = productStore.products.find((el) => el.id === +route.params.id)
     quantity.value = productDetail.value.quantity
 });
