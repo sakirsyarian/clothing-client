@@ -4,8 +4,8 @@ import { RouterLink } from 'vue-router'
 
 import { useProductStore } from '@/stores/product';
 
-let productTshirt = ref([])
-let productPremium = ref([])
+const productTshirt = ref([])
+const productPremium = ref([])
 const productStore = useProductStore();
 
 onMounted(async () => {
@@ -31,7 +31,8 @@ onMounted(async () => {
                 <!-- heading -->
                 <div class="flex justify-between items-center border-b">
                     <h2 @click="loading = false" class="py-5 font-semibold text-xl uppercase border-b border-black">
-                        Tshirt</h2>
+                        Tshirt
+                    </h2>
                     <RouterLink to="/catalog">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-8 h-8">

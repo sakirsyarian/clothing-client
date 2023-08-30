@@ -1,6 +1,8 @@
 <script setup>
 import { useProductStore } from '@/stores/product';
 import HeroSection from '@/components/home/HeroSection.vue';
+import CheapSection from '@/components/home/CheapSection.vue';
+import ExpensiveSection from '@/components/home/ExpensiveSection.vue';
 import AnswerSection from '@/components/home/AnswerSection.vue';
 import ContactSection from '@/components/home/ContactSection.vue';
 
@@ -20,6 +22,8 @@ if (productStore.toast) {
     </div>
 
     <HeroSection />
+    <CheapSection />
+    <ExpensiveSection />
     <AnswerSection />
     <ContactSection />
 </template>
