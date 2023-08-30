@@ -4,16 +4,21 @@ export function get(url) {
   return axios.get(url, {
     headers: {
       access_token:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkzMjA3MDEzLCJleHAiOjE2OTMyOTM0MTN9.X0D6CbET7QtkpspVDuqOFR17STAFPqQ0cxQ8dbEFWzc'
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkzMzY5NzEwLCJleHAiOjE2OTM0NTYxMTB9.8KpgbqOTRlO-tCAYOzekYlLRbuElgigndorbVXqQq1c'
     }
   })
 }
 
-export function getById(url) {
-  return axios.get(url, {
+export function post(url, product) {
+  return axios({
+    method: 'post',
+    url: `http://localhost:3000/${url}`,
     headers: {
       access_token:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkzMjA3MDEzLCJleHAiOjE2OTMyOTM0MTN9.X0D6CbET7QtkpspVDuqOFR17STAFPqQ0cxQ8dbEFWzc'
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkzMzY5NzEwLCJleHAiOjE2OTM0NTYxMTB9.8KpgbqOTRlO-tCAYOzekYlLRbuElgigndorbVXqQq1c'
+    },
+    data: {
+      shoppingCart: product
     }
   })
 }
