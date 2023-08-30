@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import TemplatePage from '@/components/TemplatePage.vue'
 import HomeView from '@/views/HomeView.vue'
 import CatalogView from '@/views/CatalogView.vue'
 import ProductView from '@/views/ProductView.vue'
 import ShoppingView from '@/views/ShoppingView.vue'
 import CheckoutView from '@/views/CheckoutView.vue'
+import AboutView from '@/views/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +21,11 @@ const router = createRouter({
           component: HomeView
         },
         {
+          path: 'about',
+          name: 'about',
+          component: AboutView
+        },
+        {
           path: 'catalog',
           name: 'catalog',
           component: CatalogView
@@ -26,17 +33,27 @@ const router = createRouter({
         {
           path: 'tshirt',
           name: 'tshirt',
-          component: ProductView
-        },
-        {
-          path: 'about',
-          name: 'about',
-          component: ShoppingView
+          component: CatalogView
         },
         {
           path: 'premium',
           name: 'premium',
+          component: CatalogView
+        },
+        {
+          path: 'shopping',
+          name: 'shopping-bag',
+          component: ShoppingView
+        },
+        {
+          path: 'checkout',
+          name: 'checkout',
           component: CheckoutView
+        },
+        {
+          path: 'product/:id',
+          name: 'product detail',
+          component: ProductView
         }
       ]
     }

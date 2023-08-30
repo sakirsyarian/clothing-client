@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 import CheckoutSection from '@/components/shop/CheckoutSection.vue';
 </script>
 
@@ -8,15 +9,19 @@ import CheckoutSection from '@/components/shop/CheckoutSection.vue';
             <h2 class="pr-16 font-semibold text-2xl uppercase">Checkout</h2>
             <div class="text-sm breadcrumbs">
                 <ul class="text-gray-500">
-                    <li><a>Home</a></li>
-                    <li><a>Catalog</a></li>
-                    <li><a>Tshirt</a></li>
-                    <li><a>Shopping Bag</a></li>
+                    <li>
+                        <RouterLink to="/">Home</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/catalog">Product</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/shopping">Shopping Bag</RouterLink>
+                    </li>
                     <li>Checkout</li>
                 </ul>
             </div>
-        </div>
+    </div>
 
-        <CheckoutSection />
-    </section>
-</template>
+    <CheckoutSection />
+</section></template>
