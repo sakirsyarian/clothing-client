@@ -23,9 +23,9 @@ async function orderNow() {
 
         window.snap.embed(midtrans.data.token, {
             embedId: 'snap-container',
-            onSuccess: function (result) {
+            onSuccess: function () {
                 productStore.shoppingCart.length = 0;
-                console.log(result);
+                productStore.toast = true
                 router.push('/')
             },
             onPending: function (result) {

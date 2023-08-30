@@ -5,9 +5,11 @@ import { get } from '@/lib/axios'
 import rupiah from '@/utils/rupiah'
 
 export const useProductStore = defineStore('product', () => {
+  const url = 'http://localhost:3000/products/'
+
+  const toast = ref(false)
   const products = ref([])
   const shoppingCart = ref([])
-  const url = 'http://localhost:3000/products/'
 
   function purchase(itemId) {
     const found = shoppingCart.value.find((el) => el.id === itemId)
@@ -41,5 +43,5 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  return { url, products, shoppingCart, purchase, getProducts }
+  return { url, toast, products, shoppingCart, purchase, getProducts }
 })

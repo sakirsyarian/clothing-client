@@ -1,11 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import ShoppingSection from '@/components/shop/ShoppingSection.vue';
-
-// function deleteProduct(id) {
-//     const filter = this.shoppingCart.filter(el => el.id !== id)
-//     this.shoppingCart = filter
-// }
 </script>
 
 <template>
