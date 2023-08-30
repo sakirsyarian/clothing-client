@@ -1,5 +1,14 @@
 <script setup>
+import { onMounted } from 'vue';
 
+import rupiah from '@/utils/rupiah'
+import totalPrice from '@/utils/totalPrice'
+import { useProductStore } from '@/stores/product';
+
+const productStore = useProductStore();
+onMounted(async () => {
+    await productStore.getProducts()
+});
 </script>
 
 <template>
@@ -11,39 +20,29 @@
             <div class="">
                 <h2 class="py-5 font-semibold uppercase">Order Summary</h2>
 
-                <div class="p-5 space-y-5 bg-base-200 border">
-                    <div class="flex items-center justify-between md:gap-20">
-                        <div class="flex items-center gap-3">
-                            <div class="p-2 w-16 bg-base-100">
-                                <img src="/img/javascript.png" class="mx-auto" alt="javascript">
-                            </div>
-                            <div>
-                                <p class="uppercase">JavaScript</p>
-                                <p class="text-gray-400">x 1</p>
-                            </div>
+                <div v-if="!productStore.shoppingCart.length" class="p-5 bg-base-200 border">
+                    <p class="uppercase text-base">Data not available!</p>
+                </div>
+
+                <div v-if="productStore.shoppingCart.length" class="p-5 space-y-5 bg-gray-50 border">
+                    <div v-for="product in productStore.shoppingCart" :key="product.id"
+                        class="flex items-center justify-between md:gap-20">
+                        <div>
+                            <p class="uppercase">{{ product.name }}</p>
+                            <p class="text-sm text-gray-500">x {{ product.quantity }}</p>
+                            <p class="text-sm text-gray-500">{{ rupiah(product.price) }}</p>
                         </div>
-                        <p class="font-normal">Rp 56.000</p>
-                    </div>
-                    <div class="flex items-center justify-between md:gap-20">
-                        <div class="flex items-center gap-3">
-                            <div class="p-2 w-16 bg-base-100">
-                                <img src="/img/vue.png" class="mx-auto" alt="vue">
-                            </div>
-                            <div>
-                                <p class="uppercase">Vue</p>
-                                <p class="text-gray-400">x 1</p>
-                            </div>
-                        </div>
-                        <p class="font-normal">Rp 55.000</p>
+                        <p class="font-normal">{{ rupiah(product.price * product.quantity) }}</p>
                     </div>
                 </div>
-                <div class="p-5 space-y-5 bg-base-100 border border-t-0">
+
+                <div v-if="productStore.shoppingCart.length" class="p-5 space-y-5 bg-base-100 border border-t-0">
                     <div class="flex items-center justify-between gap-20">
-                        <p class="font-semibold">Total</p>
-                        <p class="font-semibold">Rp 105.000</p>
+                        <p class="font-semibold uppercase">Total</p>
+                        <p class="font-semibold">{{ totalPrice(productStore.shoppingCart) }}</p>
                     </div>
                     <button className="btn py-4 w-full rounded-none hover:bg-black bg-black text-base-100">
-                        Checkout
+                        Order Now
                     </button>
                 </div>
             </div>
