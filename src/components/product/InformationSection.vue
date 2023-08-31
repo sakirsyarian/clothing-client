@@ -1,54 +1,13 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute, RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router'
 
-// import { useProductStore } from '@/stores/product';
-
-const props = defineProps([
+defineProps([
     'product',
     'quantity',
     'quantityPlus',
     'quantityMinus',
     'addToChart']
 );
-// console.log("information section");
-// console.log(props.product, "from props");
-
-// const route = useRoute()
-// const quantity = ref(0);
-// const productDetail = ref({});
-// const productStore = useProductStore();
-
-// function quantityOnShoppingCart() {
-//     const found = productStore.shoppingCart.find((el) => el.id === productDetail.value.id)
-//     if (productStore.shoppingCart.length && found) {
-//         found.quantity = quantity.value
-//     }
-// }
-
-// function quantityPlus() {
-//     quantity.value++
-//     productDetail.value.quantity = quantity.value
-//     quantityOnShoppingCart()
-// }
-
-// function quantityMinus() {
-//     quantity.value--
-//     productDetail.value.quantity = quantity.value
-//     quantityOnShoppingCart()
-// }
-
-// function addToChart() {
-//     productDetail.value.quantity = quantity.value
-//     productStore.purchase(productDetail.value.id)
-// }
-
-onMounted(async () => {
-    // await productStore.getProducts()
-    // productDetail.value = productStore.products.find((el) => el.id === +route.params.id)
-
-    // quantity.value = props.product.quantity
-});
 </script>
 
 <template>

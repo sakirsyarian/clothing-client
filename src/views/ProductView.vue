@@ -1,19 +1,22 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import InformationSection from '@/components/product/InformationSection.vue';
 import RelatedSection from '@/components/product/RelatedSection.vue';
 import { useProductStore } from '@/stores/product';
 
 const route = useRoute()
+const router = useRouter()
 const random = ref([])
 const quantity = ref(0);
 const productDetail = ref({});
 const productStore = useProductStore();
 
-// console.log("product view");
-// console.log(productStore.products, "from view");
+function pushRouter(id) {
+    router.push('/product/' + id)
+    productDetail.value = productStore.products.find((el) => el.id === id)
+}
 
 function quantityOnShoppingCart() {
     const found = productStore.shoppingCart.find((el) => el.id === productDetail.value.id)
@@ -54,7 +57,7 @@ onMounted(async () => {
     quantity.value = productDetail.value.quantity
 
     random.value = randomProducts(productStore.products).slice(0, 5)
-}) 
+});
 </script>
 
 <template>
@@ -64,6 +67,6 @@ onMounted(async () => {
                 :quantityMinus="quantityMinus" :addToChart="addToChart" />
         </div>
 
-        <RelatedSection :products="random" />
+        <RelatedSection :products="random" :pushRouter="pushRouter" />
     </section>
 </template>
