@@ -1,6 +1,30 @@
 <script setup>
+import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router'
+
+import { useProductStore } from '@/stores/product';
 import ShoppingSection from '@/components/shop/ShoppingSection.vue';
+
+function quantityPlus(id) {
+    const found = productStore.shoppingCart.find((el) => el.id === id)
+    found.quantity++
+}
+
+function quantityMinus(id) {
+    const found = productStore.shoppingCart.find((el) => el.id === id)
+    found.quantity--
+}
+
+function deleteProduct(id) {
+    const filter = productStore.shoppingCart.filter(el => el.id !== id)
+    productStore.shoppingCart = filter
+}
+
+const productStore = useProductStore();
+
+onMounted(async () => {
+    await productStore.getProducts()
+});
 </script>
 
 <template>
@@ -20,6 +44,7 @@ import ShoppingSection from '@/components/shop/ShoppingSection.vue';
             </div>
         </div>
 
-        <ShoppingSection />
+        <ShoppingSection :products="productStore.shoppingCart" :quantityPlus="quantityPlus" :quantityMinus="quantityMinus"
+            :deleteProduct="deleteProduct" />
     </section>
 </template>
