@@ -2,7 +2,7 @@
 import { RouterLink } from 'vue-router'
 import { useProductStore } from '@/stores/product';
 
-defineProps(['products']);
+defineProps(['products', 'pagination', 'pageNumber']);
 const productStore = useProductStore();
 </script>
 
@@ -21,11 +21,13 @@ const productStore = useProductStore();
         </div>
 
         <!-- pagination -->
-        <div className="join rounded-none">
-            <button className="join-item btn btn-active">1</button>
-            <button className="join-item btn">2</button>
-            <button className="join-item btn">3</button>
-            <button className="join-item btn">4</button>
+        <div class="join rounded-none">
+            <template v-for="number in pagination?.totalPage" :key="number">
+                <button @click="pageNumber(number)" class="join-item btn"
+                    :class="{ 'btn-active': pagination.currentPage === number }">
+                    {{ number }}
+                </button>
+            </template>
         </div>
     </section>
 </template>
