@@ -1,6 +1,50 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { ref, onMounted } from 'vue';
+import { useRouter, RouterLink, onBeforeRouteLeave } from 'vue-router'
+
+import { post } from '@/lib/axios'
+import { useProductStore } from '@/stores/product';
 import CheckoutSection from '@/components/shop/CheckoutSection.vue';
+
+const loading = ref(true)
+const router = useRouter()
+const productStore = useProductStore();
+
+onBeforeRouteLeave((to, from) => {
+    console.clear()
+    if (from.name === 'checkout') window.snap.hide()
+})
+
+async function orderNow() {
+    try {
+        const { data: midtrans } = await post('midtrans-token', productStore.shoppingCart)
+        loading.value = false
+
+        window.snap.embed(midtrans.data.token, {
+            embedId: 'snap-container',
+            onSuccess: function () {
+                productStore.shoppingCart.length = 0;
+                productStore.toast = true
+                router.push('/')
+            },
+            onPending: function (result) {
+                alert("wating your payment!"); console.log(result);
+            },
+            onError: function (result) {
+                alert("payment failed!"); console.log(result);
+            },
+            onClose: function () {
+                alert('you closed the popup without finishing the payment');
+            }
+        })
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+onMounted(async () => {
+    await productStore.getProducts()
+});
 </script>
 
 <template>
@@ -21,7 +65,8 @@ import CheckoutSection from '@/components/shop/CheckoutSection.vue';
                     <li>Checkout</li>
                 </ul>
             </div>
-    </div>
+        </div>
 
-    <CheckoutSection />
-</section></template>
+        <CheckoutSection :loading="loading" :products="productStore.shoppingCart" :orderNow="orderNow" />
+    </section>
+</template>

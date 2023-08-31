@@ -4,7 +4,7 @@ export function get(url) {
   return axios.get(url, {
     headers: {
       access_token:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkzMzY5NzEwLCJleHAiOjE2OTM0NTYxMTB9.8KpgbqOTRlO-tCAYOzekYlLRbuElgigndorbVXqQq1c'
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkzNDU2NzAzLCJleHAiOjE2OTM1NDMxMDN9.n_Muc16y9JrOPTrwKtkhXQlp_ipw_cDrVjIIL6lHnmM'
     }
   })
 }
@@ -15,7 +15,7 @@ export function post(url, product) {
     url: `http://localhost:3000/${url}`,
     headers: {
       access_token:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkzMzY5NzEwLCJleHAiOjE2OTM0NTYxMTB9.8KpgbqOTRlO-tCAYOzekYlLRbuElgigndorbVXqQq1c'
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkzNDU2NzAzLCJleHAiOjE2OTM1NDMxMDN9.n_Muc16y9JrOPTrwKtkhXQlp_ipw_cDrVjIIL6lHnmM'
     },
     data: {
       shoppingCart: product

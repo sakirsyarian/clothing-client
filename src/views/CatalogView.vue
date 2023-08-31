@@ -1,8 +1,15 @@
 <script setup>
+import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 
+import { useProductStore } from '@/stores/product';
 import SortSection from '@/components/catalog/SortSection.vue';
 import ListSection from '@/components/catalog/ListSection.vue';
+
+const productStore = useProductStore();
+onMounted(async () => {
+    await productStore.getProducts()
+});
 </script>
 
 <template>
@@ -20,7 +27,7 @@ import ListSection from '@/components/catalog/ListSection.vue';
         </div>
         <div class="grid grid-cols-1 md:grid-cols-5 gap-5 lg:gap-20">
             <SortSection />
-            <ListSection />
+            <ListSection :products="productStore.products" />
         </div>
     </section>
 </template>
