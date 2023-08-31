@@ -3,6 +3,7 @@ import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import { useProductStore } from '@/stores/product';
+import searchProduct from '@/utils/searchProduct';
 import SortSection from '@/components/catalog/SortSection.vue';
 import ListSection from '@/components/catalog/ListSection.vue';
 
@@ -14,6 +15,10 @@ async function pageNumber(number) {
 }
 
 onMounted(async () => {
+    if (productStore.search) {
+        return searchProduct(productStore);
+    }
+
     await productStore.getProducts(url)
 });
 </script>

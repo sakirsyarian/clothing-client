@@ -1,10 +1,19 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 
 import totalPrice from '@/utils/totalPrice'
+import searchProduct from '@/utils/searchProduct';
 import { useProductStore } from '@/stores/product';
 
+
+const router = useRouter()
 const productStore = useProductStore();
+async function handleSubmit(e) {
+    e.preventDefault();
+    router.push('/catalog');
+
+    searchProduct(productStore);
+}
 </script>
 
 <template>
@@ -35,11 +44,11 @@ const productStore = useProductStore();
                                 d="M15.096 5.904a6.5 6.5 0 1 0-9.192 9.192a6.5 6.5 0 0 0 9.192-9.192ZM4.49 4.49a8.5 8.5 0 0 1 12.686 11.272l5.345 5.345l-1.414 1.414l-5.345-5.345A8.501 8.501 0 0 1 4.49 4.49Z" />
                         </svg>
                     </button>
-                    <div class="mt-3 z-[1] w-52 dropdown-content">
-                        <div className="form-control">
-                            <input type="text" placeholder="Search"
+                    <div class="mt-2 z-[1] w-60 dropdown-content border">
+                        <form @submit="handleSubmit" className="form-control">
+                            <input v-model="productStore.search" type="text" placeholder="Search"
                                 className="w-24 md:w-auto input focus:outline-none rounded-none" />
-                        </div>
+                        </form>
                     </div>
                 </div>
 
