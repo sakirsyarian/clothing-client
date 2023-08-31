@@ -1,20 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
-
 import { useProductStore } from '@/stores/product';
 
-const productTshirt = ref([])
-const productPremium = ref([])
 const productStore = useProductStore();
-
-onMounted(async () => {
-    await productStore.getProducts()
-    productTshirt.value = productStore.products.slice(0, 3)
-    productPremium.value = productStore.products
-        .filter(product => product.CategoryId === 2)
-        .slice(0, 3)
-});
+defineProps([
+    'productTshirt',
+    'productPremium'
+]);
 </script>
 
 <template>

@@ -1,18 +1,9 @@
 <script setup>
-import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
-
 import { useProductStore } from '@/stores/product';
 
-const cheapest = ref([])
+defineProps(['cheapest']);
 const productStore = useProductStore();
-
-onMounted(async () => {
-    await productStore.getProducts()
-    cheapest.value = productStore.products
-        .sort((a, b) => a.price - b.price)
-        .slice(0, 5)
-});
 </script>
 
 <template>
