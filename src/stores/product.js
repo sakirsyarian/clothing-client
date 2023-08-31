@@ -7,6 +7,7 @@ import rupiah from '@/utils/rupiah'
 export const useProductStore = defineStore('product', () => {
   const url = 'http://localhost:3000/products/'
 
+  const search = ref('')
   const toast = ref(false)
   const products = ref([])
   const pagination = ref({})
@@ -48,5 +49,14 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  return { url, toast, products, pagination, shoppingCart, purchase, getProducts }
+  return {
+    url,
+    toast,
+    search,
+    products,
+    pagination,
+    shoppingCart,
+    purchase,
+    getProducts
+  }
 })
