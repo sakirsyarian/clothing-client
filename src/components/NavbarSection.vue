@@ -1,13 +1,20 @@
 <script setup>
-import { RouterLink, useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { RouterLink, useRouter, onBeforeRouteLeave } from 'vue-router'
 
 import totalPrice from '@/utils/totalPrice'
 import searchProduct from '@/utils/searchProduct';
 import { useProductStore } from '@/stores/product';
 
-
+const menu = ref(false)
 const router = useRouter()
 const productStore = useProductStore();
+
+onBeforeRouteLeave((to, from) => {
+    if (menu.value) menu.value = false
+    console.log(to, from);
+})
+
 async function handleSubmit(e) {
     e.preventDefault();
     router.push('/catalog');
@@ -84,30 +91,35 @@ async function handleSubmit(e) {
                 </div>
 
                 <!-- burger -->
-                <div class="dropdown dropdown-end md:hidden">
+                <div @click="menu = !menu" class="md:hidden">
                     <button tabIndex="0" className="btn btn-ghost btn-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                        <svg v-if="!menu" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
                             <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
+                        <svg v-else class="h-5 w-5" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#000000"
+                                d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z" />
+                        </svg>
                     </button>
-                    <!-- <div class="mt-3 z-[1] w-80 dropdown-content transition-all delay-100">
-                        <div class="relative w-full">
-                            <div className="p-8 w-96 h-screen absolute top-[-5px] right-[-5.1rem] bg-base-200">
-                                <div class="grid gap-5 font-semibold">
-                                    <RouterLink class="" to="/about">About</RouterLink>
-                                    <RouterLink class="" to="/catalog">Catalog</RouterLink>
-                                    <RouterLink class="" to="/tshirt">Tshirt</RouterLink>
-                                    <RouterLink class="" to="/premium">Premium</RouterLink>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
     </nav>
+
+    <div v-if="menu" class="relative md:hidden">
+        <div class="absolute inset-0">
+            <div className="p-8 bg-base-100">
+                <div class="grid gap-5 font-semibold">
+                    <RouterLink class="" to="/about">About</RouterLink>
+                    <RouterLink class="" to="/catalog">Catalog</RouterLink>
+                    <RouterLink class="" to="/tshirt">Tshirt</RouterLink>
+                    <RouterLink class="" to="/premium">Premium</RouterLink>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
