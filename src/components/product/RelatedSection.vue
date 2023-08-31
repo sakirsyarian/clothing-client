@@ -1,5 +1,8 @@
 <script setup>
+import { useProductStore } from '@/stores/product';
+
 defineProps(['products', 'pushRouter']);
+const productStore = useProductStore();
 </script>
 
 <template>

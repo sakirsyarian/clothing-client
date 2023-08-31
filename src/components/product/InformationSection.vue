@@ -28,7 +28,7 @@ defineProps([
 
         <!-- heading -->
         <div class="space-y-5">
-            <h2 @click="quantityProduct" class="font-semibold text-2xl uppercase">{{ product.name }}</h2>
+            <h2 class="font-semibold text-2xl uppercase">{{ product.name }}</h2>
             <p class="uppercase text-lg text-gray-600">{{ product.rupiah }}</p>
         </div>
 
