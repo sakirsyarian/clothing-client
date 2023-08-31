@@ -1,6 +1,4 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
     <section class="md:col-span-2 lg:col-span-1 border-t">

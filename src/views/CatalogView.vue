@@ -1,8 +1,26 @@
 <script setup>
+import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 
+import { useProductStore } from '@/stores/product';
+import searchProduct from '@/utils/searchProduct';
 import SortSection from '@/components/catalog/SortSection.vue';
 import ListSection from '@/components/catalog/ListSection.vue';
+
+const url = 'http://localhost:3000/customer/products'
+const productStore = useProductStore();
+
+async function pageNumber(number) {
+    await productStore.getProducts(`${url}?page=${number}`)
+}
+
+onMounted(async () => {
+    if (productStore.search) {
+        return searchProduct(productStore);
+    }
+
+    await productStore.getProducts(url)
+});
 </script>
 
 <template>
@@ -20,7 +38,7 @@ import ListSection from '@/components/catalog/ListSection.vue';
         </div>
         <div class="grid grid-cols-1 md:grid-cols-5 gap-5 lg:gap-20">
             <SortSection />
-            <ListSection />
+            <ListSection :products="productStore.products" :pagination="productStore.pagination" :pageNumber="pageNumber" />
         </div>
     </section>
 </template>

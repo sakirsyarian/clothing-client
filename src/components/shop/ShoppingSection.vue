@@ -1,30 +1,13 @@
 <script setup>
-import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router'
-
 import rupiah from '@/utils/rupiah'
-import { useProductStore } from '@/stores/product';
 
-function quantityPlus(id) {
-    const found = productStore.shoppingCart.find((el) => el.id === id)
-    found.quantity++
-}
-
-function quantityMinus(id) {
-    const found = productStore.shoppingCart.find((el) => el.id === id)
-    found.quantity--
-}
-
-function deleteProduct(id) {
-    const filter = productStore.shoppingCart.filter(el => el.id !== id)
-    productStore.shoppingCart = filter
-}
-
-const productStore = useProductStore();
-
-onMounted(async () => {
-    await productStore.getProducts()
-});
+defineProps([
+    'products',
+    'quantityPlus',
+    'quantityMinus',
+    'deleteProduct'
+]);
 </script>
 
 <template>
@@ -40,18 +23,18 @@ onMounted(async () => {
                         <th></th>
                     </tr>
                 </thead>
-                <div v-if="!productStore.shoppingCart.length" class="py-5 uppercase text-gray-400 text-base">
+                <div v-if="!products.length" class="py-5 uppercase text-gray-400 text-base">
                     Data not available!
                 </div>
-                <tbody v-if="productStore.shoppingCart.length" class="border-b border-gray-100">
-                    <tr v-for="product in productStore.shoppingCart" :key="product.id">
+                <tbody v-if="products.length" class="border-b border-gray-100">
+                    <tr v-for="product in products" :key="product.id">
                         <td class="flex items-center md:gap-5">
                             <div class="p-2 w-28 bg-base-200">
                                 <img :src="'/products/' + product.image" class="mx-auto" :alt="product.name">
                             </div>
                             <p class="hidden md:block font-semibold uppercase">{{ product.name }}</p>
                         </td>
-                        <td class="">
+                        <td>
                             <div class="flex flex-col md:flex-row gap-1">
                                 <button @click="quantityMinus(product.id)" class="px-4 py-1 border"
                                     :disabled="product.quantity === 1">-</button>
@@ -59,10 +42,10 @@ onMounted(async () => {
                                 <button @click="quantityPlus(product.id)" class="px-4 py-1 border">+</button>
                             </div>
                         </td>
-                        <td class="">
+                        <td>
                             <p class="font-semibold w-full">{{ rupiah(product.price * product.quantity) }}</p>
                         </td>
-                        <td class="">
+                        <td>
                             <button @click="deleteProduct(product.id)">
                                 <svg class="w-6 h-6" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                                     <path fill="#ef4444"
@@ -76,7 +59,7 @@ onMounted(async () => {
         </div>
 
         <!-- button -->
-        <div v-if="productStore.shoppingCart.length" class="pt-10 pb-5 flex justify-end gap-5">
+        <div v-if="products.length" class="pt-10 pb-5 flex justify-end gap-5">
             <RouterLink to="/checkout" className="btn py-4 md:w-60 rounded-none text-black">
                 Checkout
             </RouterLink>
