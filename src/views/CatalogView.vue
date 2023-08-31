@@ -6,9 +6,15 @@ import { useProductStore } from '@/stores/product';
 import SortSection from '@/components/catalog/SortSection.vue';
 import ListSection from '@/components/catalog/ListSection.vue';
 
+const url = 'http://localhost:3000/customer/products'
 const productStore = useProductStore();
+
+async function pageNumber(number) {
+    await productStore.getProducts(`${url}?page=${number}`)
+}
+
 onMounted(async () => {
-    await productStore.getProducts()
+    await productStore.getProducts(url)
 });
 </script>
 
@@ -27,7 +33,7 @@ onMounted(async () => {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-5 gap-5 lg:gap-20">
             <SortSection />
-            <ListSection :products="productStore.products" />
+            <ListSection :products="productStore.products" :pagination="productStore.pagination" :pageNumber="pageNumber" />
         </div>
     </section>
 </template>

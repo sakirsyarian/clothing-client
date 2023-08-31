@@ -9,6 +9,7 @@ export const useProductStore = defineStore('product', () => {
 
   const toast = ref(false)
   const products = ref([])
+  const pagination = ref({})
   const shoppingCart = ref([])
 
   function purchase(itemId) {
@@ -29,13 +30,17 @@ export const useProductStore = defineStore('product', () => {
     return (found.quantity = findProduct.quantity)
   }
 
-  async function getProducts() {
+  async function getProducts(urlProduct = url) {
     try {
-      const { data: productList } = await get(url)
+      const { data: productList } = await get(urlProduct)
       productList.data.map((product) => {
         product.quantity = 1
         product.rupiah = rupiah(product.price)
       })
+
+      if (urlProduct !== `http://localhost:3000/products`) {
+        pagination.value = productList.pagination
+      }
 
       products.value = productList.data
     } catch (error) {
@@ -43,5 +48,5 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  return { url, toast, products, shoppingCart, purchase, getProducts }
+  return { url, toast, products, pagination, shoppingCart, purchase, getProducts }
 })
