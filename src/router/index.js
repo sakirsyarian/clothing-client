@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import NotFound from '@/views/NotFound.vue'
 import TemplatePage from '@/components/TemplatePage.vue'
 import HomeView from '@/views/HomeView.vue'
 import CatalogView from '@/views/CatalogView.vue'
@@ -10,6 +11,10 @@ import CheckoutView from '@/views/CheckoutView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/:pathMatch(.*)*',
+      component: NotFound
+    },
     {
       path: '/',
       component: TemplatePage,
