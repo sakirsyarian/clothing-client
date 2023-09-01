@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { RouterLink, useRouter, onBeforeRouteLeave } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 
 import totalPrice from '@/utils/totalPrice'
 import searchProduct from '@/utils/searchProduct';
@@ -10,15 +10,8 @@ const menu = ref(false)
 const router = useRouter()
 const productStore = useProductStore();
 
-onBeforeRouteLeave((to, from) => {
-    if (menu.value) menu.value = false
-    console.log(to, from);
-})
-
-async function handleSubmit(e) {
-    e.preventDefault();
+async function handleSubmit() {
     router.push('/catalog');
-
     searchProduct(productStore);
 }
 </script>
@@ -52,7 +45,7 @@ async function handleSubmit(e) {
                         </svg>
                     </button>
                     <div class="mt-2 z-[1] w-60 dropdown-content border">
-                        <form @submit="handleSubmit" className="form-control">
+                        <form @submit.prevent="handleSubmit" className="form-control">
                             <input v-model="productStore.search" type="text" placeholder="Search"
                                 className="w-24 md:w-auto input focus:outline-none rounded-none" />
                         </form>

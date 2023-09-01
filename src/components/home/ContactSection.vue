@@ -1,3 +1,19 @@
+<script setup>
+import { ref } from 'vue';
+import emailjs from '@emailjs/browser';
+
+const form = ref(null);
+async function sendEmail() {
+    const email = await emailjs.sendForm('service_ywq3648', 'template_uywjia6', form.value, 'Iz_ZTYcxSEZtuyjaR')
+    try {
+        console.log('SUCCESS!', email.text);
+        form.value.reset();
+    } catch (error) {
+        console.log('FAILED...', email.text);
+    }
+}
+</script>
+
 <template>
     <section class="pt-10 pb-20">
         <!-- heading -->
@@ -6,7 +22,7 @@
         </div>
 
         <!-- contact -->
-        <div class="">
+        <div>
             <div class="py-5">
                 <h3 class="font-semibold uppercase">Send The Message</h3>
                 <p class="mt-1 text-gray-500">You can write us an email and we'll get back to you in short time.</p>
@@ -15,7 +31,7 @@
             <div class="grid grid-cols-1 md:grid-cols-5 justify-center items-center gap-10">
                 <!-- form -->
                 <div class="w-full md:col-span-3">
-                    <form>
+                    <form ref="form" @submit.prevent="sendEmail">
                         <!-- name -->
                         <div class="grid md:grid-cols-2 md:gap-6">
                             <div class="relative z-0 w-full mb-6 group">
