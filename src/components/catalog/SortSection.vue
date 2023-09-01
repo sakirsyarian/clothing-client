@@ -1,52 +1,20 @@
 <script setup>
 import { ref } from 'vue'
-import { useProductStore } from '@/stores/product';
+
+const emit = defineEmits(['radio-price', 'check-categories']);
 
 const checked = ref([]);
 const picked = ref('None');
-const productStore = useProductStore();
-
-async function handleChecked() {
-    picked.value = 'None'
-    await productStore.getProducts();
-
-    const filterCategories = productStore.products.filter(product => {
-        return product.Category.name.includes(checked.value)
-    });
-
-    if (!filterCategories.length) {
-        return await productStore.getProducts()
-    }
-
-    if (!checked.value.length) {
-        return await productStore.getProducts('http://localhost:3000/customer/products')
-    }
-
-    productStore.products = filterCategories;
-}
 
 async function handlePicked() {
     checked.value = [];
-    await productStore.getProducts();
-
-    if (picked.value === 'Lowest') {
-        const cheapest = productStore.products
-            .sort((a, b) => a.price - b.price);
-
-        productStore.products = cheapest;
-        return
-    }
-
-    if (picked.value === 'Highest') {
-        const expensive = productStore.products
-            .sort((a, b) => b.price - a.price)
-
-        productStore.products = expensive;
-        return
-    }
-
-    await productStore.getProducts('http://localhost:3000/customer/products');
+    emit('radio-price', picked.value);
 }
+
+const handleChecked = () => {
+    picked.value = 'None'
+    emit('check-categories', checked.value);
+};
 </script>
 
 <template>
