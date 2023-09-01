@@ -28,7 +28,6 @@ async function handleSubmit() {
 
             <!-- middle -->
             <div class="hidden md:flex gap-5 font-semibold">
-                <RouterLink class="" to="/about">About</RouterLink>
                 <RouterLink class="" to="/catalog">Catalog</RouterLink>
                 <RouterLink class="" to="/tshirt">Tshirt</RouterLink>
                 <RouterLink class="" to="/premium">Premium</RouterLink>
@@ -106,7 +105,6 @@ async function handleSubmit() {
         <div class="absolute inset-0">
             <div className="p-8 bg-base-100">
                 <div class="grid gap-5 font-semibold">
-                    <RouterLink class="" to="/about">About</RouterLink>
                     <RouterLink class="" to="/catalog">Catalog</RouterLink>
                     <RouterLink class="" to="/tshirt">Tshirt</RouterLink>
                     <RouterLink class="" to="/premium">Premium</RouterLink>
