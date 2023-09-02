@@ -4,9 +4,10 @@ import { defineStore } from 'pinia'
 import { get } from '@/lib/axios'
 import rupiah from '@/utils/rupiah'
 
-export const useProductStore = defineStore('product', () => {
-  const url = 'http://localhost:3000/products/'
+const url = 'http://localhost:3000/products/'
+export const urlCustomer = 'http://localhost:3000/customer/products'
 
+export const useProductStore = defineStore('product', () => {
   const search = ref('')
   const toast = ref(false)
   const products = ref([])
@@ -50,7 +51,6 @@ export const useProductStore = defineStore('product', () => {
   }
 
   return {
-    url,
     toast,
     search,
     products,

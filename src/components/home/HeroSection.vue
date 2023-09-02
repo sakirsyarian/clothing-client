@@ -25,7 +25,7 @@ defineProps([
                     <h2 @click="loading = false" class="py-5 font-semibold text-xl uppercase border-b border-black">
                         Tshirt
                     </h2>
-                    <RouterLink to="/catalog">
+                    <RouterLink to="/tshirt">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -60,7 +60,7 @@ defineProps([
                 <!-- heading -->
                 <div class="flex justify-between items-center border-b">
                     <h2 class="py-5 font-semibold text-xl uppercase border-b border-black">Premium</h2>
-                    <RouterLink to="/catalog">
+                    <RouterLink to="/premium">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round"
