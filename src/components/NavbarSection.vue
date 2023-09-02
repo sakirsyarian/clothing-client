@@ -17,7 +17,7 @@ async function handleSubmit() {
 </script>
 
 <template>
-    <nav class="uppercase border-b">
+    <nav class="uppercase">
         <div class="p-0 navbar justify-between bg-base-100">
             <!-- left -->
             <div class="">

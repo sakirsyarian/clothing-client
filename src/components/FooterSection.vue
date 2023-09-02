@@ -1,5 +1,5 @@
 <script setup>
-
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -9,8 +9,12 @@
             <div class="space-y-4">
                 <h3 class="font-semibold uppercase text-white">Product</h3>
                 <ul class="space-y-2 text-gray-300">
-                    <li><a href="#">Tshirt</a></li>
-                    <li><a href="#">Premium</a></li>
+                    <li>
+                        <RouterLink to="/tshirt">Tshirt</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/premium">Premium</RouterLink>
+                    </li>
                 </ul>
             </div>
 
@@ -18,9 +22,12 @@
             <div class="space-y-4">
                 <h3 class="font-semibold uppercase text-white">Sitemap</h3>
                 <ul class="space-y-2 text-gray-300">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Catalog</a></li>
+                    <li>
+                        <RouterLink to="/">Home</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/catalog">Catalog</RouterLink>
+                    </li>
                 </ul>
             </div>
 
@@ -28,9 +35,15 @@
             <div class="space-y-4">
                 <h3 class="font-semibold uppercase text-white">Help</h3>
                 <ul class="space-y-2 text-gray-300">
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Terms and condition</a></li>
-                    <li><a href="#">Provacy policy</a></li>
+                    <li>
+                        <RouterLink to="/">FAQ</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/">Terms and condition</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/">Provacy policy</RouterLink>
+                    </li>
                 </ul>
             </div>
 
@@ -57,16 +70,15 @@
 
                 <div class="p-1 inline-block bg-base-100">
                     <a href="http://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="#000000"
-                                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
-                        </svg>
-                    </a>
-                </div>
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#000000"
+                            d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3Z" />
+                    </svg>
+                </a>
             </div>
         </div>
+    </div>
 
-        <!-- credit -->
-        <p class="mt-16 text-center text-gray-300">&copy; {{ new Date().getFullYear() }} All rights reserved</p>
-    </section>
-</template>
+    <!-- credit -->
+    <p class="mt-16 text-center text-gray-300">&copy; {{ new Date().getFullYear() }} All rights reserved</p>
+</section></template>
