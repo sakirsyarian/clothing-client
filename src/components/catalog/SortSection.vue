@@ -1,6 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRoute, onBeforeRouteLeave } from 'vue-router'
 
+const route = useRoute()
 const emit = defineEmits(['radio-price', 'check-categories']);
 
 const checked = ref([]);
@@ -15,6 +17,38 @@ const handleChecked = () => {
     picked.value = 'None'
     emit('check-categories', checked.value);
 };
+
+onBeforeRouteLeave(async (to) => {
+    if (to.path === '/premium') {
+        checked.value = ['Premium'];
+    }
+
+    if (to.path === '/tshirt') {
+        checked.value = ['Tshirt'];
+    }
+
+    if (to.path === '/catalog') {
+        checked.value = [];
+    }
+})
+
+onMounted(() => {
+    if (route.path === '/premium') {
+        checked.value = ['Premium'];
+    }
+
+    if (route.path === '/tshirt') {
+        checked.value = ['Tshirt'];
+    }
+
+    if (route.query.price === 'lowest') {
+        picked.value = 'Lowest';
+    }
+
+    if (route.query.price === 'highest') {
+        picked.value = 'Highest';
+    }
+});
 </script>
 
 <template>

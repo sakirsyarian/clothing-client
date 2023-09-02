@@ -1,13 +1,14 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { RouterLink } from 'vue-router'
+import { useRoute, RouterLink, onBeforeRouteLeave } from 'vue-router'
 
+import { urlCustomer } from '@/stores/product';
 import { useProductStore } from '@/stores/product';
 import searchProduct from '@/utils/searchProduct';
 import SortSection from '@/components/catalog/SortSection.vue';
 import ListSection from '@/components/catalog/ListSection.vue';
 
-const url = 'http://localhost:3000/customer/products'
+const route = useRoute();
 const productStore = useProductStore();
 
 const price = ref('None');
@@ -28,7 +29,7 @@ async function checkCategories(argument) {
     }
 
     if (!categories.value.length) {
-        return await productStore.getProducts('http://localhost:3000/customer/products')
+        return await productStore.getProducts(urlCustomer)
     }
 
     productStore.products = filterCategories;
@@ -56,19 +57,55 @@ async function radioPrice(argument) {
         return
     }
 
-    await productStore.getProducts('http://localhost:3000/customer/products');
+    await productStore.getProducts(urlCustomer);
 }
 
 async function pageNumber(number) {
-    await productStore.getProducts(`${url}?page=${number}`)
+    await productStore.getProducts(`${urlCustomer}?page=${number}`)
 }
+
+onBeforeRouteLeave(async (to) => {
+    if (to.path === '/premium') {
+        categories.value = ['Premium'];
+        checkCategories(categories.value);
+    }
+
+    if (to.path === '/tshirt') {
+        categories.value = ['Tshirt'];
+        checkCategories(categories.value);
+    }
+
+    if (to.path === '/catalog') {
+        await productStore.getProducts(urlCustomer);
+    }
+})
 
 onMounted(async () => {
     if (productStore.search) {
         return searchProduct(productStore);
     }
 
-    await productStore.getProducts(url)
+    if (route.path === '/premium') {
+        categories.value = ['Premium'];
+        return checkCategories(categories.value);
+    }
+
+    if (route.path === '/tshirt') {
+        categories.value = ['Tshirt'];
+        return checkCategories(categories.value);
+    }
+
+    if (route.query.price === 'lowest') {
+        price.value = 'Lowest';
+        return radioPrice(price.value);
+    }
+
+    if (route.query.price === 'highest') {
+        price.value = 'Highest';
+        return radioPrice(price.value);
+    }
+
+    await productStore.getProducts(urlCustomer)
 });
 </script>
 

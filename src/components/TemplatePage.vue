@@ -8,7 +8,7 @@ import FooterSection from '@/components/FooterSection.vue';
 <template>
     <header class="bg-base-100">
         <div class="mx-auto container">
-            <div class="px-4 xl:px-40">
+            <div class="px-4 2xl:px-40">
                 <NavbarSection />
             </div>
         </div>
@@ -16,14 +16,14 @@ import FooterSection from '@/components/FooterSection.vue';
 
     <main class="bg-base-100">
         <div class="mx-auto container">
-            <div class="px-4 xl:px-40">
+            <div class="px-4 2xl:px-40">
                 <RouterView />
             </div>
         </div>
     </main>
 
     <footer class="mx-auto container">
-        <div class="px-4 xl:px-40">
+        <div class="px-4 2xl:px-40">
             <div class="bg-black">
                 <FooterSection />
             </div>
