@@ -1,35 +1,70 @@
-# Clothing Client
+# Clothing Store
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a clothing store application built with Vue 3, Pinia, Vue Router and Vite. Clothing store is a simple e-commerce whose products are programmer t-shirts.
 
-## Recommended IDE Setup
+## Installation
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+1. Clone the repository.
+2. Install the dependencies.
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+3. Start the development server.
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+4. Open the application in your browser.
+
+## Usage
+
+The application has the following pages:
+
+- Home page
+- Catalog page
+- Product detail page
+- Shopping cart page
+- Checkout page
+
+To navigate between pages, use the navigation bar at the top of the screen.
+
+## Features
+
+The application has the following features:
+
+- Add products to the shopping cart.
+- Remove products from the shopping cart.
+- Update the quantity of products in the shopping cart.
+- Checkout and place an order.
+
+## Code Structure
+
+The code is organized into the following directories:
+
+- `src/`: The source code of the application.
+- `assets/`: The assets of the application.
+- `public/`: The public files of the application.
+
+The `src/` directory contains the following files:
+
+- `App.vue`: The root component of the application.
+- `main.js`: The entry point of the application.
+- `router/index.js`: The router of the application.
+- `stores/product.js`: The store of the application.
+- `components/`: The components of the application.
+- `views/`: The views of the application.
+
+## Information
+
+To run this Clothing Store, you must also run the server. You can clone the server here:
 
 ```sh
-npm run build
+https://github.com/sakirsyarian/clothing-server
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Conclusion
 
-```sh
-npm run lint
-```
+This is a simple clothing store application built with Vue 3, Pinia, and Vite. It demonstrates how to use these technologies to build a real-world application.
